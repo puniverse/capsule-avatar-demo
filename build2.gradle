@@ -1,0 +1,34 @@
+apply plugin: 'java'
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+}
+
+configurations {
+    capsule
+}
+
+dependencies {
+	capsule "co.paralleluniverse:capsule:0.3.0"
+}
+
+task capsule(type: Jar) {
+    archiveName = "hello-nodejs.jar"
+    from(configurations.capsule.collect { zipTree(it) })
+    
+    from "app.js"   
+    
+    manifest { 
+        attributes(
+	        "Main-Class"                : "Capsule",
+            "Application"               : "com.oracle:avatar-js:0.10.25-SNAPSHOT",
+            "Repositories"              : "https://maven.java.net/content/groups/public/",
+            "Native-Dependencies-Linux" : "com.oracle:libavatar-js-linux-x64:0.10.25-SNAPSHOT,libavatar-js.so",
+            "Native-Dependencies-Win"   : "com.oracle:libavatar-js-win-x64:0.10.25-SNAPSHOT,libavatar-js.dll",
+            "Native-Dependencies-Mac"   : "com.oracle:libavatar-js-macosx-x64:0.10.25-SNAPSHOT,libavatar-js.dylib",
+            "Min-Java-Version"          : "1.8.0",
+            "Args"                      : '$CAPSULE_DIR/app.js'
+        )
+    }
+}
