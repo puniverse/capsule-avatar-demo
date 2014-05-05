@@ -2,7 +2,6 @@ apply plugin: 'java'
 
 repositories {
 	mavenCentral()
-	mavenLocal()
 	maven { url "https://maven.java.net/content/groups/public/" }
 }
 
