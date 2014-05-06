@@ -16,6 +16,8 @@ To run:
 
     java -jar build/lib/hello-nodejs.jar
 
+This demo application is based on [this blog post](http://blog.jonasbandi.net/2014/03/running-nodejs-applications-on-jvm-with.html) by Jonas Bandi.
+
 ## License
 
 Released to the [public domain](http://creativecommons.org/publicdomain/zero/1.0/)
