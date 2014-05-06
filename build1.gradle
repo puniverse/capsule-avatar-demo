@@ -30,9 +30,9 @@ task capsule(type: Jar) {
         
     manifest { 
         attributes(
-	        "Main-Class"        : "Capsule",
-	        "Application-Name"  : "hello-nodejs",
-	        "Application-Class" : "com.oracle.avatar.js.Server", 
+	    "Main-Class"        : "Capsule",
+	    "Application-Name"  : "hello-nodejs",
+	    "Application-Class" : "com.oracle.avatar.js.Server", 
             "Min-Java-Version"  : "1.8.0",
             "Args"              : '$CAPSULE_DIR/app.js'
         )
