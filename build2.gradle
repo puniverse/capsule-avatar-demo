@@ -20,7 +20,7 @@ task capsule(type: Jar) {
     
     manifest { 
         attributes(
-	        "Main-Class"                : "Capsule",
+	    "Main-Class"                : "Capsule",
             "Application"               : "com.oracle:avatar-js:0.10.25-SNAPSHOT",
             "Repositories"              : "https://maven.java.net/content/groups/public/",
             "Native-Dependencies-Linux" : "com.oracle:libavatar-js-linux-x64:0.10.25-SNAPSHOT,libavatar-js.so",
