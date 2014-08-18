@@ -11,11 +11,11 @@ configurations {
 }
 
 dependencies {
-	runtime "com.oracle:avatar-js:0.10.25-SNAPSHOT"
-	natives "com.oracle:libavatar-js-linux-x64:0.10.25-SNAPSHOT"
-	natives "com.oracle:libavatar-js-win-x64:0.10.25-SNAPSHOT"
-	natives "com.oracle:libavatar-js-macosx-x64:0.10.25-SNAPSHOT"
-	capsule "co.paralleluniverse:capsule:0.3.1"
+	runtime "com.oracle:avatar-js:0.10.28-SNAPSHOT"
+	natives "com.oracle:libavatar-js-linux-x64:0.10.28-SNAPSHOT"
+	natives "com.oracle:libavatar-js-win-x64:0.10.28-SNAPSHOT"
+	natives "com.oracle:libavatar-js-macosx-x64:0.10.28-SNAPSHOT"
+	capsule "co.paralleluniverse:capsule:0.7.0"
 }
 
 task capsule(type: Jar) {
@@ -30,9 +30,9 @@ task capsule(type: Jar) {
         
     manifest { 
         attributes(
-	    "Main-Class"        : "Capsule",
-	    "Application-Name"  : "hello-nodejs",
-	    "Application-Class" : "com.oracle.avatar.js.Server", 
+	        "Main-Class"        : "Capsule",
+	        "Application-Name"  : "hello-nodejs",
+	        "Application-Class" : "com.oracle.avatar.js.Server", 
             "Min-Java-Version"  : "1.8.0",
             "Args"              : '$CAPSULE_DIR/app.js'
         )
