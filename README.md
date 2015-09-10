@@ -6,11 +6,7 @@ There are two build files. `build1.gradle` creates a capsule with embedded depen
 
 To build:
 
-    ./gradlew -b build1.gradle capsule
-
-or:
-
-    ./gradlew -b build2.gradle capsule
+    ./gradlew capsule
 
 To run:
 

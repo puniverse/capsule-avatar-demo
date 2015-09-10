@@ -1,0 +1,56 @@
+apply plugin: 'java'
+
+repositories {
+	mavenCentral()
+    mavenLocal()
+}
+
+configurations {
+    capsule
+    capsuleMaven
+}
+
+dependencies {
+    capsule 'co.paralleluniverse:capsule:1.0'
+    capsuleMaven 'co.paralleluniverse:capsule-maven:1.0'
+}
+
+ext.avatarVer = '0.10.32-SNAPSHOT'
+
+task capsule(type: Jar) {
+    archiveName = 'hello-nodejs.jar'
+    from(configurations.capsule.collect { zipTree(it) })
+    from configurations.capsuleMaven
+
+    duplicatesStrategy 'exclude'
+    
+    from 'app.js'
+    
+    manifest { 
+        attributes(
+            'Main-Class'                : 'Capsule',
+            'Caplets'                   : 'co.paralleluniverse:capsule-maven:1.0', // 'MavenCapsule'
+            'Application'               : "com.oracle:avatar-js:$avatarVer",
+            'Repositories'              : 'https://maven.java.net/content/groups/public/',
+            'Allow-Snapshots'           : 'true',
+            'Min-Java-Version'          : '1.8.0',
+            'Args'                      : '$CAPSULE_DIR/app.js'
+        )
+        attributes(
+            'Native-Dependencies' : "com.oracle:libavatar-js-linux-x64:$avatarVer=libavatar-js.so",
+            'Linux'
+        )
+        attributes(
+            'Native-Dependencies' : "com.oracle:libavatar-js-win-x64:$avatarVer=libavatar-js.dll",
+            'Windows'
+        )
+        attributes(
+            'Native-Dependencies' : "com.oracle:libavatar-js-macosx-x64:$avatarVer=libavatar-js.dylib",
+            'MacOS'
+        )
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}

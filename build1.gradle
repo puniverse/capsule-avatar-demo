@@ -2,7 +2,8 @@ apply plugin: 'java'
 
 repositories {
 	mavenCentral()
-	maven { url "https://maven.java.net/content/groups/public/" }
+    mavenLocal()
+	maven { url 'https://maven.java.net/content/groups/public/' }
 }
 
 configurations {
@@ -10,19 +11,21 @@ configurations {
     natives
 }
 
+ext.avatarVer = '0.10.32-SNAPSHOT'
+
 dependencies {
-	runtime "com.oracle:avatar-js:0.10.28-SNAPSHOT"
-	natives "com.oracle:libavatar-js-linux-x64:0.10.28-SNAPSHOT"
-	natives "com.oracle:libavatar-js-win-x64:0.10.28-SNAPSHOT"
-	natives "com.oracle:libavatar-js-macosx-x64:0.10.28-SNAPSHOT"
-	capsule "co.paralleluniverse:capsule:0.7.1"
+	runtime "com.oracle:avatar-js:$avatarVer"
+	natives "com.oracle:libavatar-js-linux-x64:$avatarVer"
+	natives "com.oracle:libavatar-js-win-x64:$avatarVer"
+	natives "com.oracle:libavatar-js-macosx-x64:$avatarVer"
+	capsule 'co.paralleluniverse:capsule:1.0-rc1-SNAPSHOT'
 }
 
 task capsule(type: Jar) {
-    archiveName = "hello-nodejs.jar"
-    from(configurations.capsule.collect { zipTree(it) }) { include 'Capsule.class' }
+    archiveName = 'hello-nodejs.jar'
+    from(configurations.capsule.collect { zipTree(it) })
     
-    from "app.js"
+    from 'app.js'
     from { configurations.runtime }
     from { configurations.natives } {
         rename 'libavatar-js-.+\\.(.+)', 'libavatar-js.$1'
@@ -30,11 +33,11 @@ task capsule(type: Jar) {
         
     manifest { 
         attributes(
-	        "Main-Class"        : "Capsule",
-	        "Application-Name"  : "hello-nodejs",
-	        "Application-Class" : "com.oracle.avatar.js.Server", 
-            "Min-Java-Version"  : "1.8.0",
-            "Args"              : '$CAPSULE_DIR/app.js'
+	        'Main-Class'        : 'Capsule',
+	        'Application-Name'  : 'hello-nodejs',
+	        'Application-Class' : 'com.oracle.avatar.js.Server', 
+            'Min-Java-Version'  : '1.8.0',
+            'Args'              : '$CAPSULE_DIR/app.js'
         )
     }
 }
