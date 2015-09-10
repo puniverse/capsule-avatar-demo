@@ -2,7 +2,7 @@
 
 A simple demo of using [Capsule](https://github.com/puniverse/capsule) to package an [Avatar](https://avatar.java.net/) Node.js application.
 
-There are two build files. `build1.gradle` creates a capsule with embedded dependencies, while `build2.gradle` creates a capsule that downloads dependencies at runtime.
+There are two build files. `build.gradle` creates a capsule that downloads dependencies at runtime, while `build1.gradle` creates a capsule with embedded dependencies.
 
 To build:
 
